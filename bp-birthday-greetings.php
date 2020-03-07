@@ -5,7 +5,7 @@ function  bp_birthday_greetings_settings() {
     add_settings_section(
         'ps_birthday_section',
  
-        __( 'BP Birthhday Greetings Settings',  'bp-birthday-greetings' ),
+        __( 'BP Birthday Greetings Settings',  'bp-birthday-greetings' ),
  
         'bp_birthday_greetings_page_callback_section',
  

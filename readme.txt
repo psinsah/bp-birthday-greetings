@@ -11,7 +11,7 @@ BP Birthday Greetings will send birthday greeting notification to the member fro
 
 == Description ==
 
-BP Birthday Greetings is based on original idea of <a href="https://profiles.wordpress.org/poojasahgal">Pooja Sahgal</a> who suggested that BuddyPress is missing birthday notifications. So, this plugin will send a birthday greeting notification to members. You just need to create a DOB field and have to map in the plugin settings, that you can find under options tab of BuddyPress settings.
+BP Birthday Greetings is based on original idea of <a href="https://profiles.wordpress.org/poojasahgal">Pooja Sahgal</a>. This plugin will send a birthday greeting notification to members. You just need to create a DOB field and have to map in the plugin settings, that you can find under options tab of BuddyPress settings.
 
 == Installation ==
 
@@ -48,6 +48,9 @@ Yes! It can be translated easily.
 
 = 1.0.0 =
 Initial Release
+
+= 1.0.1 =
+Fixed Typo
 
 == Upgrade Notice ==
 = Initial Release =
