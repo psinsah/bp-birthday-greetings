@@ -80,14 +80,17 @@ class BP_Birthday_Widget extends WP_Widget {
 						'link_title' => __( 'Send a private message to this user.', 'bp-birthday-greetings' ),
 						'link_text' => __( 'Wish Happy Birthday', 'bp-birthday-greetings' ),
 						'link_class' => 'send-message',
-					 );
+					);
 					if( $members_id != bp_loggedin_user_id() ){
 						$btn = bp_get_button( $defaults );
 					}else{
 						$btn='';
 					}
 				}
-				echo '<li> Happy Birthday '.$member_name.' &#127874;'.$btn.'</li>';
+				echo '<li>'.bp_core_fetch_avatar(array('item_id' => $members_id, 'type' => 'thumb', 'width' => 32, 'height' => 32, 'class' => 'avatar','html'=>true));
+				_e('Happy Birthday','bp-birthday-greetings');
+				echo ' '.$member_name.' &#127874;</li>';
+				echo $btn;
 			}
 			echo '</ul>';
 		}

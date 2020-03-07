@@ -8,4 +8,17 @@
     color: white;
     font-weight: bold;
     font-size: 12px;
+    width: 100%;
+}
+
+ul.birthday-members-list li {
+    display: flex;
+    align-items: center;
+    margin: 9px 0px;
+}
+ul.birthday-members-list li img.emoji{
+    margin-left:5px;
+}
+ul.birthday-members-list li img.avatar{
+    margin-right :5px;
 }

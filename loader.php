@@ -5,7 +5,7 @@
  * Description: Members will receive a birthday greeting as a notification
  * Author:      Prashant Singh
  * Author URI:  https://profiles.wordpress.org/prashantvatsh
- * Version:     1.0.2
+ * Version:     1.0.3
  * Text Domain: bp-birthday-greetings
  * License:     GPLv2 or later
  */
@@ -104,4 +104,57 @@ add_filter( 'bp_notifications_get_notifications_for_user', 'bp_birthday_buddypre
 add_action('wp_enqueue_scripts', 'bp_birthday_enqueue_style');
 function bp_birthday_enqueue_style(){
 	wp_enqueue_style('birthday-style',  plugin_dir_url( __FILE__ )  .'assets/css/bp-birthday-style.css');
+}
+
+//Shortcode to list anywhere
+add_shortcode('ps_birthday_list', 'bp_birthday_shortcode');
+function bp_birthday_shortcode(){
+	global $wp, $bp, $wpdb;
+	$bp_birthday_option_value = bp_get_option( 'bp-dob' );
+	$sql = $wpdb->prepare("SELECT profile.user_id, profile.value FROM {$bp->profile->table_name_data} profile INNER JOIN $wpdb->users users ON profile.user_id = users.id AND user_status != 1 WHERE profile.field_id = %d", $bp_birthday_option_value);
+	$profileval = $wpdb->get_results($sql);
+	foreach ($profileval as $profileobj) {
+		$timeoffset = get_option('gmt_offset');
+		if(!is_numeric($profileobj->value)) {
+			$bday = strtotime($profileobj->value) + $timeoffset;
+		}else {
+			$bday = $profileobj->value + $timeoffset;
+		}
+		if ((date_i18n("n")==date("n",$bday))&&(date_i18n("j")==date("j",$bday)))
+		$birthdays[] = $profileobj->user_id;
+	}
+	if(empty($birthdays)){
+		$empty_message = apply_filters('bp_birthday_empty_message', __('No Birthdays Found Today.','bp-birthday-greetings'));
+		echo $empty_message;
+	}else{
+		echo '<ul class="birthday-members-list">';
+		foreach ($birthdays as $birthday => $members_id) {
+			$member_name =  bp_core_get_user_displayname( $members_id );
+			$btn = '';
+			if ( bp_is_active( 'messages' ) ){
+				$defaults = array(
+					'id' => 'private_message-'.$members_id,
+					'component' => 'messages',
+					'must_be_logged_in' => true,
+					'block_self' => true,
+					'wrapper_id' => 'send-private-message-'.$members_id,
+					'wrapper_class' =>'send-private-message',
+					'link_href' => wp_nonce_url( bp_loggedin_user_domain() . bp_get_messages_slug() . '/compose/?r=' . bp_core_get_username( $members_id ) ),
+					'link_title' => __( 'Send a private message to this user.', 'bp-birthday-greetings' ),
+					'link_text' => __( 'Wish Happy Birthday', 'bp-birthday-greetings' ),
+					'link_class' => 'send-message',
+				);
+				if( $members_id != bp_loggedin_user_id() ){
+					$btn = bp_get_button( $defaults );
+				}else{
+					$btn='';
+				}
+			}
+			echo '<li>'.bp_core_fetch_avatar(array('item_id' => $members_id, 'type' => 'thumb', 'width' => 32, 'height' => 32, 'class' => 'avatar','html'=>true));
+			_e('Happy Birthday','bp-birthday-greetings');
+			echo ' '.$member_name.' &#127874;</li>';
+			echo $btn;
+		}
+		echo '</ul>';
+	}
 }

@@ -1,9 +1,9 @@
 === BP Birthday Greetings ===
-Contributors: prashantvatsh
+Contributors: prashantvatsh, poojasahgal
 Tags: buddypress, birthday, members birthday, birthday notification, members birthday notification, birthday widget, birthday wishes
 Requires at least: 4.9.0
-Tested up to: 5.2.0
-Stable tag: 1.0.2
+Tested up to: 5.2.3
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,9 +11,9 @@ BP Birthday Greetings will send birthday greeting notification to the member fro
 
 == Description ==
 
-BP Birthday Greetings is based on original idea of <a href="https://profiles.wordpress.org/poojasahgal">Pooja Sahgal</a>. This plugin will send a birthday greeting notification to members. You just need to create a DOB field and have to map in the plugin settings, that you can find under options tab of BuddyPress settings.
+BP Birthday Greetings plugin will send a birthday greeting notification to members. You just need to create a DOB field and have to map in the plugin settings, that you can find under options tab of BuddyPress settings.
 
-We have one widget called BuddyPress Birthdays that you can use in sidebars to display the list of member birthdays and can wish them as well using private message functionality of BuddyPress.
+We have one widget called BuddyPress Birthdays that you can use in sidebars to display the list of member birthdays and can wish them as well using private message functionality of BuddyPress. One shortcode [ps_birthday_list] is also added which can be used to list birthdays as well.
 
 == Installation ==
 
@@ -48,6 +48,10 @@ function ps_change_birthday_message(){
 	_e('Your Changed Message Here', 'bp-birthday-greetings');
 }
 
+= Is there any shortcode to list birthdays? =
+
+Yes there is one shortcode [ps_birthday_list].
+
 == Screenshots ==
 
 1. Setting to select profile field
@@ -55,6 +59,8 @@ function ps_change_birthday_message(){
 2. Birthday Greeting Notification
 
 3. Birthday Widget
+
+4. Listing With Member Avatar
 
 == Changelog ==
 
@@ -66,6 +72,12 @@ Fixed Typo
 
 = 1.0.2 =
 Added Birthday Widget
+
+= 1.0.3 =
+* Added Member Avatar
+* Fixed Translation Issue
+* Added Shortcode For Birthday Listing
+
 
 == Upgrade Notice ==
 = Initial Release =
