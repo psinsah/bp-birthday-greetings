@@ -5,7 +5,7 @@
  * Description: Members will receive a birthday greeting as a notification
  * Author:      Prashant Singh
  * Author URI:  https://profiles.wordpress.org/prashantvatsh
- * Version:     1.0.0
+ * Version:     1.0.2
  * Text Domain: bp-birthday-greetings
  * License:     GPLv2 or later
  */
@@ -17,6 +17,7 @@ add_action('plugins_loaded','bp_birthday_check_is_buddypress');
 function bp_birthday_check_is_buddypress(){
 	if ( function_exists('bp_is_active') ) {
 		require( dirname( __FILE__ ) . '/bp-birthday-greetings.php' );
+		require( dirname( __FILE__ ) . '/bp-birthday-widget.php' );
 	}else{
 		add_action( 'admin_notices', 'bp_birthday_buddypress_inactive__error' );
 	}
@@ -99,3 +100,8 @@ function bp_birthday_buddypress_notifications( $content, $item_id, $secondary_it
 	}
 }
 add_filter( 'bp_notifications_get_notifications_for_user', 'bp_birthday_buddypress_notifications', 10, 7);
+
+add_action('wp_enqueue_scripts', 'bp_birthday_enqueue_style');
+function bp_birthday_enqueue_style(){
+	wp_enqueue_style('birthday-style',  plugin_dir_url( __FILE__ )  .'assets/css/bp-birthday-style.css');
+}

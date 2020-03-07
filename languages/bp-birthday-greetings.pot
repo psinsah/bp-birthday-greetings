@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: bp-birthday-greetings.php:8
-msgid "BP Birthday Greetings Settings"
+msgid "BP Birthhday Greetings Settings"
 msgstr ""
 
 #: bp-birthday-greetings.php:18

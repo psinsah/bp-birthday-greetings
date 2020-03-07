@@ -1,0 +1,11 @@
+.birthday-members-list .send-message{
+	display: block;
+    width: 144px;
+    background: #e105059c;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
