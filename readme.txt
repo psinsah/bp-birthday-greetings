@@ -2,8 +2,8 @@
 Contributors: prashantvatsh, poojasahgal
 Tags: buddypress, birthday, members birthday, birthday notification, members birthday notification, birthday widget, birthday wishes
 Requires at least: 4.9.0
-Tested up to: 5.2.3
-Stable tag: 1.0.3
+Tested up to: 5.3.2
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,29 @@ function ps_change_birthday_message(){
 
 Yes there is one shortcode [ps_birthday_list].
 
+= How to use new settings? =
+
+Width and height is to define profile picture width and height. Type is to define the type of the image you want to display. 
+
+BuddyPress has two sets of avatar sizes:
+
+Thumb – defaults to 50px square
+Full – defaults to 150px square
+
+Note: If you chose type full or thumbnail but defined width and height lesser or higher than the default values then profile pic will be displayed according to the defined size.
+Also, if defined width and height is not reflecting then most probably any other plugin or your theme's CSS rules are overriding it.
+
+= How to change the image of the cake? =
+
+Now, we have a filter for this. You can paste the below given code in your child theme's functions file or any site specific plugin's file:
+
+add_filter('bp_birthday_cake_img', 'ps_change_birthday_img');
+function ps_change_birthday_img(){
+	$img = '<img src="your_image_url" class="your_class_name">';
+	return $img;
+}
+
+
 == Screenshots ==
 
 1. Setting to select profile field
@@ -61,6 +84,8 @@ Yes there is one shortcode [ps_birthday_list].
 3. Birthday Widget
 
 4. Listing With Member Avatar
+
+5. New Settings
 
 == Changelog ==
 
@@ -78,6 +103,9 @@ Added Birthday Widget
 * Fixed Translation Issue
 * Added Shortcode For Birthday Listing
 
-
+= 1.0.4 =
+* Added Setting For Profile Pic Size Changes
+* Added Filter To Change The Image Of The Cake
+ 
 == Upgrade Notice ==
 = Initial Release =

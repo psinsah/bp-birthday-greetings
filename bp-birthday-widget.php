@@ -87,9 +87,16 @@ class BP_Birthday_Widget extends WP_Widget {
 						$btn='';
 					}
 				}
-				echo '<li>'.bp_core_fetch_avatar(array('item_id' => $members_id, 'type' => 'thumb', 'width' => 32, 'height' => 32, 'class' => 'avatar','html'=>true));
+				$dp_width = bp_get_option( 'bp-dp-width' );
+    			$dp_width = (empty($dp_width)) ? 32 : $dp_width;
+				$dp_height = bp_get_option( 'bp-dp-height' );
+    			$dp_height = (empty($dp_height)) ? 32 : $dp_height;
+    			$dp_type = bp_get_option( 'bp-dp-type' );
+    			$dp_type = (empty($dp_type)) ? 'thumb' : $dp_type;
+    			$cake_img = apply_filters('bp_birthday_cake_img', '&#127874;');
+				echo '<li>'.bp_core_fetch_avatar(array('item_id' => $members_id, 'type' => $dp_type, 'width' => $dp_width, 'height' => $dp_height, 'class' => 'avatar','html'=>true));
 				_e('Happy Birthday','bp-birthday-greetings');
-				echo ' '.$member_name.' &#127874;</li>';
+				echo ' '.$member_name.' '.$cake_img.'</li>';
 				echo $btn;
 			}
 			echo '</ul>';
